@@ -58,7 +58,18 @@ ev-ecommerce/
 - Java 17 or higher
 - Node.js 16 or higher
 - Maven 3.6 or higher
-- PostgreSQL
+- PostgreSQL (must be installed and running)
+
+**To start PostgreSQL:**
+- If installed via Homebrew (macOS):
+  ```sh
+  brew services start postgresql
+  ```
+- If using Postgres.app: Open the app and click "Start Server".
+- On Linux:
+  ```sh
+  sudo service postgresql start
+  ```
 
 ### Database Setup
 
@@ -130,7 +141,7 @@ The frontend will start on `http://localhost:3000`.
 
 ## Troubleshooting
 
-- **Database connection errors:** Double-check your `application.properties` and ensure PostgreSQL is running.
+- **Database connection errors:** Double-check your `application.properties` and ensure PostgreSQL is running. If not, start it as described above.
 - **Duplicate EVs:** If you accidentally insert sample data multiple times, you can manually clean up duplicates in the database using SQL.
 - **Port conflicts:** Make sure nothing else is running on ports 8080 (backend) or 3000 (frontend).
 
