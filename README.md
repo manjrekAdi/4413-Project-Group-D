@@ -60,6 +60,32 @@ ev-ecommerce/
 - Maven 3.6 or higher
 - PostgreSQL
 
+### Database Setup
+
+1. **Start PostgreSQL** and create the database and user if not already done:
+   ```sh
+   psql -U postgres
+   CREATE DATABASE evdb;
+   CREATE USER postgreuser WITH PASSWORD 'yourpassword';
+   GRANT ALL PRIVILEGES ON DATABASE evdb TO postgreuser;
+   ```
+
+2. **Set your database credentials** in `ev-ecommerce/backend/src/main/resources/application.properties`:
+   ```
+   spring.datasource.url=jdbc:postgresql://localhost:5432/evdb
+   spring.datasource.username=postgreuser
+   spring.datasource.password=yourpassword
+   ```
+
+3. **Start the backend once** to auto-create tables.
+
+4. **Insert sample data** (EVs and users):
+   - Run the following script to insert sample EVs and users:
+     ```sh
+     cd ev-ecommerce/db-setup
+     psql -h localhost -U postgreuser -d evdb -f insert_sample_evs.sql
+     ```
+
 ### Backend Setup
 1. Navigate to the backend directory:
    ```bash
@@ -92,9 +118,21 @@ The backend will start on `http://localhost:8080`.
 
 The frontend will start on `http://localhost:3000`.
 
-## Database
+## First-Time Run Checklist
 
-The application uses **PostgreSQL** for persistent storage. Ensure your database is running and credentials are set in `application.properties`.
+1. Clone the repository.
+2. Set up PostgreSQL and create the database/user.
+3. Update `application.properties` with your DB credentials.
+4. Build and run the backend (`mvn spring-boot:run`).
+5. Insert sample data using the provided SQL script.
+6. Install frontend dependencies and start the React app.
+7. Access the app at [http://localhost:3000](http://localhost:3000).
+
+## Troubleshooting
+
+- **Database connection errors:** Double-check your `application.properties` and ensure PostgreSQL is running.
+- **Duplicate EVs:** If you accidentally insert sample data multiple times, you can manually clean up duplicates in the database using SQL.
+- **Port conflicts:** Make sure nothing else is running on ports 8080 (backend) or 3000 (frontend).
 
 ## Notes
 - Build artifacts (`target/`, `build/`) and duplicate frontend directories are not part of the repository.

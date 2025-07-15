@@ -20,7 +20,7 @@ public class DataInitializer implements CommandLineRunner {
     
     @Override
     public void run(String... args) throws Exception {
-        // Initialize sample users
+        // Initialize sample users (always create if they don't exist)
         if (userRepository.count() == 0) {
             User admin = new User("admin", "admin@evcommerce.com", "admin123");
             admin.setRole(User.UserRole.ADMIN);
@@ -32,7 +32,7 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println("Sample users created");
         }
         
-        // Initialize sample EVs
+        // Initialize sample EVs (always create if they don't exist)
         if (evRepository.count() == 0) {
             // Tesla Model 3
             EV teslaModel3 = new EV(
