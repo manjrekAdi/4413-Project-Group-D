@@ -49,6 +49,7 @@ ev-ecommerce/
 - Role-based access control (Customer/Admin)
 - Browse, filter, and compare EVs
 - Shopping cart management
+- **Review and rating system (5-star ratings)**
 - RESTful API
 - Responsive frontend
 
@@ -90,11 +91,15 @@ ev-ecommerce/
 
 3. **Start the backend once** to auto-create tables.
 
-4. **Insert sample data** (EVs and users):
+4. **Insert sample data** (EVs, users, and reviews):
    - Run the following script to insert sample EVs and users:
      ```sh
      cd ev-ecommerce/db-setup
      psql -h localhost -U postgreuser -d evdb -f insert_sample_evs.sql
+     ```
+   - Run the following script to insert sample reviews:
+     ```sh
+     psql -h localhost -U postgreuser -d evdb -f insert_sample_reviews.sql
      ```
 
 ### Backend Setup
