@@ -1,7 +1,7 @@
-# EV E-Commerce Platform - Render.com Deployment Guide
+# EV E-Commerce Platform - Render.com Deployment Guide (Free Method)
 
 ## 🚀 Overview
-This guide will help you deploy your EV E-Commerce platform to Render.com, making it cloud-native and accessible via HTTPS.
+This guide will help you deploy your EV E-Commerce platform to Render.com using the **free manual deployment method**, making it cloud-native and accessible via HTTPS.
 
 ## 📋 Prerequisites
 - GitHub repository with your code
@@ -11,12 +11,12 @@ This guide will help you deploy your EV E-Commerce platform to Render.com, makin
 ## 🔧 Pre-Deployment Setup
 
 ### 1. Repository Structure
-Ensure your repository has this structure:
+Your repository should have this structure:
 ```
 ev-ecommerce/
 ├── backend/
+│   ├── Dockerfile
 │   ├── Procfile
-│   ├── render.yaml
 │   ├── pom.xml
 │   └── src/
 ├── frontend/
@@ -31,7 +31,7 @@ The application is configured to use:
 - **Development**: `localhost:8080` (local development)
 - **Production**: `https://ev-ecommerce-backend.onrender.com` (Render deployment)
 
-## 🌐 Deployment Steps
+## 🌐 Deployment Steps (Free Method)
 
 ### Step 1: Deploy Backend to Render
 
@@ -41,15 +41,13 @@ The application is configured to use:
 
 2. **Create New Web Service**
    - Click "New +" → "Web Service"
-   - Connect your GitHub repository
-   - Select the repository containing your EV E-Commerce project
+   - Connect your GitHub repository: `https://github.com/manjrekAdi/4413-Project-Group-D.git`
 
 3. **Configure Backend Service**
    ```
    Name: ev-ecommerce-backend
-   Environment: Java
-   Build Command: mvn clean install
-   Start Command: java -jar target/backend-0.0.1-SNAPSHOT.jar
+   Environment: Docker
+   Root Directory: backend/
    ```
 
 4. **Add Environment Variables**
@@ -58,25 +56,27 @@ The application is configured to use:
    FRONTEND_URL=https://ev-ecommerce-frontend.onrender.com
    ```
 
-5. **Create PostgreSQL Database**
+5. **Deploy Backend**
+   - Click "Create Web Service"
+   - Render will build and deploy automatically
+   - Note the URL: `https://ev-ecommerce-backend.onrender.com`
+
+### Step 2: Create PostgreSQL Database
+
+1. **Create New PostgreSQL Database**
    - Click "New +" → "PostgreSQL"
    - Name: `ev-ecommerce-db`
    - Database: `evdb`
    - User: `postgreuser`
 
-6. **Link Database to Backend**
-   - In your backend service settings
+2. **Link Database to Backend**
+   - Go to your backend service settings
    - Add environment variables from database:
      - `DATABASE_URL` (auto-populated)
      - `DB_USERNAME` (auto-populated)
      - `DB_PASSWORD` (auto-populated)
 
-7. **Deploy Backend**
-   - Click "Create Web Service"
-   - Render will build and deploy automatically
-   - Note the URL: `https://ev-ecommerce-backend.onrender.com`
-
-### Step 2: Deploy Frontend to Render
+### Step 3: Deploy Frontend to Render
 
 1. **Create New Static Site**
    - Click "New +" → "Static Site"
@@ -100,7 +100,7 @@ The application is configured to use:
    - Render will build and deploy automatically
    - Note the URL: `https://ev-ecommerce-frontend.onrender.com`
 
-### Step 3: Initialize Database
+### Step 4: Initialize Database
 
 1. **Access Backend Logs**
    - Go to your backend service in Render
@@ -146,8 +146,8 @@ curl https://ev-ecommerce-backend.onrender.com/api/chatbot/health
 
 1. **Build Failures**
    - Check build logs in Render dashboard
-   - Verify Maven dependencies in `pom.xml`
-   - Ensure Java version compatibility
+   - Verify Dockerfile is in backend directory
+   - Ensure Maven dependencies in `pom.xml`
 
 2. **Database Connection Issues**
    - Verify environment variables are set correctly
