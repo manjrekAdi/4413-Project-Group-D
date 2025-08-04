@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/evs")
-@CrossOrigin(origins = {"http://localhost:3000", "https://ev-frontend.onrender.com", "https://four413-project-group-d-6.onrender.com"})
+@CrossOrigin(origins = {"http://localhost:3000", "https://four413-project-group-d-7.onrender.com", "https://ev-frontend.onrender.com", "https://four413-project-group-d-6.onrender.com"})
 public class EVController {
     
     @Autowired
