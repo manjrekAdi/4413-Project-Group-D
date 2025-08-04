@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: ev-postgres
+    environment:
+      POSTGRES_DB: evdb
+      POSTGRES_USER: postgreuser
+      POSTGRES_PASSWORD: adiman05
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db-setup:/docker-entrypoint-initdb.d
+    networks:
+      - ev-network
+
+  # Spring Boot Backend
+  backend:
+    build: ./backend
+    container_name: ev-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/evdb
+      SPRING_DATASOURCE_USERNAME: postgreuser
+      SPRING_DATASOURCE_PASSWORD: adiman05
+      SPRING_WEB_CORS_ALLOWED_ORIGINS: http://localhost:3000,http://frontend:80
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - ev-network
+    restart: unless-stopped
+
+  # React Frontend
+  frontend:
+    build: ./frontend/ev-frontend
+    container_name: ev-frontend
+    environment:
+      REACT_APP_API_URL: http://localhost:8080
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - ev-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  ev-network:
+    driver: bridge 
