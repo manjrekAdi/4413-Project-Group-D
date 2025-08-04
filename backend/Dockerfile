@@ -24,5 +24,5 @@ RUN ./mvnw clean install -DskipTests
 # Expose the port the app runs on
 EXPOSE 8080
 
-# Set the command to run the application
-CMD ["java", "-jar", "target/backend-0.0.1-SNAPSHOT.jar"] 
+# Set the command to run the application with production profile
+CMD ["java", "-jar", "target/backend-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"] 

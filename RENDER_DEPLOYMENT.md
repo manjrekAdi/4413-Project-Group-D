@@ -31,6 +31,9 @@ The application is configured to use:
 - **Development**: `localhost:8080` (local development)
 - **Production**: `https://ev-ecommerce-backend.onrender.com` (Render deployment)
 
+### 3. Maven Wrapper Setup
+The project includes Maven wrapper files (`mvnw` and `.mvn` directory) that are required for Docker builds. These files have been generated and are included in the repository.
+
 ## 🌐 Deployment Steps (Free Method)
 
 ### Step 1: Deploy Backend to Render
@@ -53,7 +56,10 @@ The application is configured to use:
 4. **Add Environment Variables**
    ```
    SPRING_PROFILES_ACTIVE=prod
-   FRONTEND_URL=https://ev-ecommerce-frontend.onrender.com
+   CORS_ORIGINS=https://ev-ecommerce-frontend.onrender.com
+   LOG_LEVEL=INFO
+   SHOW_SQL=false
+   FORMAT_SQL=false
    ```
 
 5. **Deploy Backend**
@@ -73,8 +79,8 @@ The application is configured to use:
    - Go to your backend service settings
    - Add environment variables from database:
      - `DATABASE_URL` (auto-populated)
-     - `DB_USERNAME` (auto-populated)
-     - `DB_PASSWORD` (auto-populated)
+     - `DATABASE_USERNAME` (auto-populated)
+     - `DATABASE_PASSWORD` (auto-populated)
 
 ### Step 3: Deploy Frontend to Render
 
@@ -144,7 +150,12 @@ curl https://ev-ecommerce-backend.onrender.com/api/chatbot/health
 
 ### Common Issues:
 
-1. **Build Failures**
+1. **Build Failures - Missing Maven Wrapper Files**
+   - **Error**: `failed to calculate checksum of ref: "/mvnw": not found` or `"/.mvn": not found`
+   - **Solution**: Ensure `mvnw` and `.mvn` directory are present in the backend directory
+   - **Fix**: Run `mvn wrapper:wrapper` in the backend directory to generate missing files
+
+2. **Build Failures**
    - Check build logs in Render dashboard
    - Verify Dockerfile is in backend directory
    - Ensure Maven dependencies in `pom.xml`
