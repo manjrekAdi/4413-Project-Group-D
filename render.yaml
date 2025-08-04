@@ -1,7 +1,7 @@
 services:
   - type: web
     name: ev-ecommerce-backend
-    env: java
+    env: docker
     buildCommand: mvn clean install
     startCommand: java -jar target/backend-0.0.1-SNAPSHOT.jar
     rootDir: backend
@@ -15,7 +15,7 @@ services:
       - key: DB_USERNAME
         fromDatabase:
           name: ev-ecommerce-db
-          property: username
+          property: user
       - key: DB_PASSWORD
         fromDatabase:
           name: ev-ecommerce-db
