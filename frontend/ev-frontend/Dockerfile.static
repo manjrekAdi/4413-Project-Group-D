@@ -1,0 +1,20 @@
+# Build stage for static site deployment
+FROM node:18-alpine as build
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# The build output will be in the /app/build directory
+# Render will serve this directory as a static site 

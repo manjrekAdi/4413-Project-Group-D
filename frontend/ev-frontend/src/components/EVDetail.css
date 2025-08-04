@@ -1,0 +1,604 @@
+.ev-detail {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.back-button {
+  background: var(--gradient-secondary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.back-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: var(--transition);
+}
+
+.back-button:hover::before {
+  left: 100%;
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.ev-detail-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  animation: slideInUp 0.8s ease-out 0.2s both;
+}
+
+.ev-image-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+
+.ev-detail-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  transition: var(--transition);
+  animation: fadeIn 1s ease-out 0.4s both;
+}
+
+.ev-detail-image:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-xl), 0 0 30px rgba(102, 126, 234, 0.3);
+}
+
+.placeholder-image-large {
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-lg);
+  color: var(--gray-500);
+  font-size: 1.5rem;
+  border: 2px dashed var(--gray-300);
+  animation: pulse 2s infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.placeholder-image-large::before {
+  content: '🚗';
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+}
+
+.ev-info-section {
+  text-align: left;
+  animation: slideInRight 0.8s ease-out 0.4s both;
+}
+
+.ev-info-section h1 {
+  margin: 0 0 1rem 0;
+  color: var(--gray-800);
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ev-description {
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.ev-specs {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  margin-bottom: 2rem;
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.ev-specs::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--gray-200);
+  transition: var(--transition);
+}
+
+.spec-item:hover {
+  background: var(--gray-50);
+  margin: 0 -2rem;
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius);
+}
+
+.spec-item:last-child {
+  border-bottom: none;
+}
+
+.spec-label {
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.spec-value {
+  color: var(--gray-800);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Loan Calculator Section */
+.loan-calculator {
+  background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  margin-bottom: 2rem;
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  animation: slideInUp 0.8s ease-out 0.6s both;
+}
+
+.loan-calculator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-success);
+}
+
+.loan-calculator h3 {
+  margin: 0 0 1rem 0;
+  color: var(--gray-800);
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.loan-calculator h3::before {
+  content: '💰';
+  font-size: 1.2rem;
+}
+
+.loan-calculator p {
+  margin: 0.5rem 0;
+  color: var(--gray-600);
+  font-size: 0.95rem;
+}
+
+.monthly-payment {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--success-color);
+  margin: 1rem 0;
+  background: var(--gradient-success);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: pulse 2s infinite;
+}
+
+.loan-calc-btn {
+  margin-top: 1rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.loan-calc-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: var(--transition);
+}
+
+.loan-calc-btn:hover::before {
+  left: 100%;
+}
+
+.loan-calc-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Purchase Section */
+.purchase-section {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-md);
+  animation: slideInUp 0.8s ease-out 0.8s both;
+  position: relative;
+  overflow: hidden;
+}
+
+.purchase-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+
+.quantity-selector {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quantity-selector label {
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.quantity-selector select {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: var(--transition);
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.quantity-selector select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.total-price {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--gray-200);
+}
+
+.total-price span {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+  flex: 1;
+  min-width: 150px;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.action-buttons .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: var(--transition);
+}
+
+.action-buttons .btn:hover::before {
+  left: 100%;
+}
+
+.action-buttons .btn-primary {
+  background: var(--gradient-primary);
+}
+
+.action-buttons .btn-secondary {
+  background: var(--gradient-secondary);
+}
+
+/* EV Features Section */
+.ev-features {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-md);
+  animation: slideInUp 0.8s ease-out 1s both;
+  position: relative;
+  overflow: hidden;
+}
+
+.ev-features::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-secondary);
+}
+
+.ev-features h3 {
+  margin: 0 0 1.5rem 0;
+  color: var(--gray-800);
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ev-features h3::before {
+  content: '✨';
+  font-size: 1.2rem;
+}
+
+.ev-features ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.ev-features li {
+  padding: 0.75rem 0;
+  color: var(--gray-600);
+  font-size: 1rem;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--gray-100);
+  transition: var(--transition);
+  position: relative;
+  padding-left: 2rem;
+}
+
+.ev-features li:last-child {
+  border-bottom: none;
+}
+
+.ev-features li::before {
+  content: '⚡';
+  position: absolute;
+  left: 0;
+  top: 0.75rem;
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.ev-features li:hover {
+  color: var(--gray-800);
+  background: var(--gray-50);
+  margin: 0 -2rem;
+  padding: 0.75rem 2rem 0.75rem 3rem;
+  border-radius: var(--border-radius);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .ev-detail-container {
+    gap: 2rem;
+  }
+  
+  .ev-info-section h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ev-detail {
+    padding: 1rem;
+  }
+  
+  .ev-detail-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .ev-info-section h1 {
+    font-size: 1.8rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .action-buttons .btn {
+    min-width: auto;
+  }
+  
+  .placeholder-image-large {
+    height: 300px;
+  }
+  
+  .ev-detail-image {
+    max-height: 300px;
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .ev-detail {
+    padding: 0.5rem;
+  }
+  
+  .ev-info-section h1 {
+    font-size: 1.5rem;
+  }
+  
+  .ev-description {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  
+  .ev-specs,
+  .loan-calculator,
+  .purchase-section,
+  .ev-features {
+    padding: 1.5rem;
+  }
+  
+  .monthly-payment {
+    font-size: 1.5rem;
+  }
+  
+  .total-price span {
+    font-size: 1.2rem;
+  }
+}
+
+/* Additional Animations */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Hover Effects */
+.ev-specs:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.loan-calculator:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.purchase-section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.ev-features:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+} 
