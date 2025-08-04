@@ -23,7 +23,7 @@ const ReviewSection = ({ evId, currentUser }) => {
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/reviews/ev/${evId}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL || 'https://four413-project-group-d-6.onrender.com'}/api/reviews/ev/${evId}`);
       setReviews(response.data);
       setLoading(false);
     } catch (err) {
@@ -34,7 +34,7 @@ const ReviewSection = ({ evId, currentUser }) => {
 
   const fetchReviewStats = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/reviews/ev/${evId}/stats`);
+              const response = await axios.get(`${process.env.REACT_APP_API_URL || 'https://four413-project-group-d-6.onrender.com'}/api/reviews/ev/${evId}/stats`);
       setReviewStats(response.data);
     } catch (err) {
       console.error('Failed to load review stats:', err);
@@ -43,7 +43,7 @@ const ReviewSection = ({ evId, currentUser }) => {
 
   const fetchUserReview = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/reviews/user/${currentUser.id}/ev/${evId}`);
+              const response = await axios.get(`${process.env.REACT_APP_API_URL || 'https://four413-project-group-d-6.onrender.com'}/api/reviews/user/${currentUser.id}/ev/${evId}`);
       if (response.status === 200) {
         setUserReview(response.data);
       }
@@ -57,10 +57,10 @@ const ReviewSection = ({ evId, currentUser }) => {
     try {
       if (editingReview) {
         // Update existing review
-        await axios.put(`http://localhost:8080/api/reviews/${editingReview.id}?userId=${currentUser.id}`, reviewData);
+        await axios.put(`${process.env.REACT_APP_API_URL || 'https://four413-project-group-d-6.onrender.com'}/api/reviews/${editingReview.id}?userId=${currentUser.id}`, reviewData);
       } else {
         // Create new review
-        await axios.post(`http://localhost:8080/api/reviews/ev/${evId}?userId=${currentUser.id}`, reviewData);
+                  await axios.post(`${process.env.REACT_APP_API_URL || 'https://four413-project-group-d-6.onrender.com'}/api/reviews/ev/${evId}?userId=${currentUser.id}`, reviewData);
       }
       
       // Refresh reviews and stats
@@ -83,7 +83,7 @@ const ReviewSection = ({ evId, currentUser }) => {
   const handleDeleteReview = async (reviewId) => {
     if (window.confirm('Are you sure you want to delete this review?')) {
       try {
-        await axios.delete(`http://localhost:8080/api/reviews/${reviewId}?userId=${currentUser.id}`);
+        await axios.delete(`${process.env.REACT_APP_API_URL || 'https://four413-project-group-d-6.onrender.com'}/api/reviews/${reviewId}?userId=${currentUser.id}`);
         
         // Refresh reviews and stats
         await fetchReviews();

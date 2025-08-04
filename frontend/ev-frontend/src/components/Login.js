@@ -26,7 +26,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:8080/api/users/login', formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL || 'https://four413-project-group-d-6.onrender.com'}/api/users/login`, formData);
       
       if (response.data.message === 'Login successful') {
         // Store user info in localStorage for demo purposes

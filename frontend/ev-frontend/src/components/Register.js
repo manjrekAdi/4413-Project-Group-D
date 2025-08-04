@@ -58,7 +58,7 @@ const Register = () => {
         password: formData.password
       };
 
-      const response = await axios.post('http://localhost:8080/api/users/register', userData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL || 'https://four413-project-group-d-6.onrender.com'}/api/users/register`, userData);
       
       alert('Registration successful! Please login.');
       navigate('/login');
