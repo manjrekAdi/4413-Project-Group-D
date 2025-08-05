@@ -14,9 +14,13 @@ const EVDetail = () => {
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [showLoanCalculator, setShowLoanCalculator] = useState(false);
+  const [showComparisonModal, setShowComparisonModal] = useState(false);
+  const [comparisonEV, setComparisonEV] = useState(null);
+  const [allEVs, setAllEVs] = useState([]);
 
   useEffect(() => {
     fetchEVDetail();
+    fetchAllEVs();
   }, [id]);
 
   const fetchEVDetail = async () => {
@@ -27,6 +31,15 @@ const EVDetail = () => {
     } catch (err) {
       setError('Failed to fetch electric vehicle details');
       setLoading(false);
+    }
+  };
+
+  const fetchAllEVs = async () => {
+    try {
+      const response = await axios.get(createApiUrl(API_ENDPOINTS.EVS));
+      setAllEVs(response.data);
+    } catch (err) {
+      console.error('Failed to fetch all EVs for comparison');
     }
   };
 
@@ -145,6 +158,12 @@ const EVDetail = () => {
               <button className="btn btn-secondary" onClick={() => navigate('/cart')}>
                 View Cart
               </button>
+              <button 
+                className="btn btn-tertiary" 
+                onClick={() => setShowComparisonModal(true)}
+              >
+                Compare with...
+              </button>
             </div>
           </div>
         </div>
@@ -174,6 +193,65 @@ const EVDetail = () => {
         evId={ev.id} 
         currentUser={{ id: 2, role: 'CUSTOMER' }} // For demo purposes
       />
+
+      {/* Quick Comparison Modal */}
+      {showComparisonModal && (
+        <div className="comparison-modal-overlay" onClick={() => setShowComparisonModal(false)}>
+          <div className="comparison-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>Quick Comparison</h3>
+              <button 
+                className="modal-close" 
+                onClick={() => setShowComparisonModal(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="modal-content">
+              <p>Select a vehicle to compare with {ev.brand} {ev.model}:</p>
+              <select 
+                value={comparisonEV?.id || ''} 
+                onChange={(e) => {
+                  const selected = allEVs.find(ev => ev.id === parseInt(e.target.value));
+                  setComparisonEV(selected);
+                }}
+              >
+                <option value="">Choose a vehicle...</option>
+                {allEVs.filter(e => e.id !== ev.id).map(ev => (
+                  <option key={ev.id} value={ev.id}>
+                    {ev.brand} {ev.model}
+                  </option>
+                ))}
+              </select>
+              {comparisonEV && (
+                <div className="quick-comparison">
+                  <div className="comparison-item">
+                    <strong>{ev.brand} {ev.model}</strong>
+                    <p>Price: ${ev.price?.toLocaleString()}</p>
+                    <p>Range: {ev.rangeKm} km</p>
+                    <p>Battery: {ev.batteryCapacityKwh} kWh</p>
+                  </div>
+                  <div className="comparison-vs">VS</div>
+                  <div className="comparison-item">
+                    <strong>{comparisonEV.brand} {comparisonEV.model}</strong>
+                    <p>Price: ${comparisonEV.price?.toLocaleString()}</p>
+                    <p>Range: {comparisonEV.rangeKm} km</p>
+                    <p>Battery: {comparisonEV.batteryCapacityKwh} kWh</p>
+                  </div>
+                </div>
+              )}
+              {comparisonEV && (
+                <button 
+                  className="btn btn-primary"
+                  onClick={() => navigate(`/compare?ev1=${ev.id}&ev2=${comparisonEV.id}`)}
+                >
+                  View Full Comparison
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

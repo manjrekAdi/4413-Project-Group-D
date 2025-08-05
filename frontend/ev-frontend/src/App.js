@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react
 import './App.css';
 import EVList from './components/EVList';
 import EVDetail from './components/EVDetail';
+import EVComparison from './components/EVComparison';
 import Cart from './components/Cart';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -55,6 +56,7 @@ function App() {
           <nav>
             <Link to="/">Home</Link>
             <Link to="/evs">Electric Vehicles</Link>
+            <Link to="/compare">Compare EVs</Link>
             <Link to="/cart">Cart</Link>
             <Link to="/loan-calculator">Loan Calculator</Link>
             
@@ -78,6 +80,7 @@ function App() {
             <Route path="/" element={<EVList />} />
             <Route path="/evs" element={<EVList />} />
             <Route path="/evs/:id" element={<EVDetail />} />
+            <Route path="/compare" element={<EVComparison />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/loan-calculator" element={<LoanCalculatorPage />} />
             <Route path="/login" element={<Login setUser={setUser} />} />

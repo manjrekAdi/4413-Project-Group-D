@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { API_BASE_URL, createApiUrl, API_ENDPOINTS } from '../config/api';
 import './EVList.css';
@@ -18,6 +18,7 @@ const EVList = () => {
     minRange: ''
   });
   const [sortBy, setSortBy] = useState('model');
+  const navigate = useNavigate();
 
   // For demo purposes, using user ID 2 (customer)
   const userId = 2;
@@ -139,9 +140,14 @@ const EVList = () => {
     <div className="ev-list">
       <div className="ev-list-header">
         <h2>Electric Vehicles</h2>
-        <Link to="/loan-calculator" className="loan-calc-link">
-          💰 Loan Calculator
-        </Link>
+        <div className="header-actions">
+          <Link to="/compare" className="compare-link">
+            🔍 Compare EVs
+          </Link>
+          <Link to="/loan-calculator" className="loan-calc-link">
+            💰 Loan Calculator
+          </Link>
+        </div>
       </div>
       
       {/* Filters */}
@@ -217,6 +223,13 @@ const EVList = () => {
               <div className="ev-actions">
                 <Link to={`/evs/${ev.id}`} className="btn btn-primary">View Details</Link>
                 <button className="btn btn-secondary" onClick={() => addToCart(ev.id)}>Add to Cart</button>
+                <button 
+                  className="btn btn-tertiary" 
+                  onClick={() => navigate(`/compare?ev1=${ev.id}`)}
+                  title="Compare this vehicle"
+                >
+                  Compare
+                </button>
               </div>
             </div>
           </div>
