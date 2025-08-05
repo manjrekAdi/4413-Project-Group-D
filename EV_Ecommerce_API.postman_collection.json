@@ -473,6 +473,85 @@
           }
         }
       ]
+    },
+    {
+      "name": "Checkout",
+      "item": [
+        {
+          "name": "Process Checkout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"creditCardNumber\": \"1234567890123456\",\n  \"expiryDate\": \"12/25\",\n  \"cvv\": \"123\",\n  \"billingAddress\": \"123 Main St, City, State 12345\",\n  \"phoneNumber\": \"555-123-4567\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/checkout/2",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "checkout", "2"]
+            }
+          }
+        },
+        {
+          "name": "Get User Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/checkout/2/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "checkout", "2", "orders"]
+            }
+          }
+        },
+        {
+          "name": "Get Order by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/checkout/order/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "checkout", "order", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"SHIPPED\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/checkout/order/1/status",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "checkout", "order", "1", "status"]
+            }
+          }
+        }
+      ]
     }
   ]
 } 

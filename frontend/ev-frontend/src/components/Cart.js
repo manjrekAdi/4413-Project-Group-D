@@ -90,7 +90,7 @@ const Cart = () => {
       alert('Your cart is empty');
       return;
     }
-    alert('Checkout functionality would be implemented here');
+    navigate('/checkout');
   };
 
   if (loading) return <div className="loading">Loading cart...</div>;

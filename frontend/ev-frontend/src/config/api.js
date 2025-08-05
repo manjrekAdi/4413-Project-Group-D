@@ -28,7 +28,8 @@ export const API_ENDPOINTS = {
   USERS: '/api/users',
   REVIEWS: '/api/reviews',
   CART: '/api/cart',
-  CHATBOT: '/api/chatbot'
+  CHATBOT: '/api/chatbot',
+  CHECKOUT: '/api/checkout'
 };
 
 export default config; 
