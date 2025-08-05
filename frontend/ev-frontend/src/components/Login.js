@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
@@ -29,8 +29,10 @@ const Login = () => {
       const response = await axios.post(`${process.env.REACT_APP_API_URL || 'https://four413-project-group-d-6.onrender.com'}/api/users/login`, formData);
       
       if (response.data.message === 'Login successful') {
-        // Store user info in localStorage for demo purposes
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        // Store user info in localStorage and update state
+        const userData = response.data.user;
+        localStorage.setItem('user', JSON.stringify(userData));
+        setUser(userData); // Update the user state in App component
         alert('Login successful!');
         navigate('/evs');
       } else {

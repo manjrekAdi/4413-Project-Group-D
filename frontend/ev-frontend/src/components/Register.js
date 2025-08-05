@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Register.css';
 
-const Register = () => {
+const Register = ({ setUser }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
