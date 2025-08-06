@@ -5,7 +5,6 @@ import EVList from './components/EVList';
 import EVDetail from './components/EVDetail';
 import EVComparison from './components/EVComparison';
 import Cart from './components/Cart';
-import Checkout from './components/Checkout';
 import Login from './components/Login';
 import Register from './components/Register';
 import LoanCalculator from './components/LoanCalculator';
@@ -83,7 +82,6 @@ function App() {
             <Route path="/evs/:id" element={<EVDetail />} />
             <Route path="/compare" element={<EVComparison />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
             <Route path="/loan-calculator" element={<LoanCalculatorPage />} />
             <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/register" element={<Register setUser={setUser} />} />
