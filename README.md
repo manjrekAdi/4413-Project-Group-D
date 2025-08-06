@@ -1,8 +1,19 @@
 # EV E-Commerce Platform
 
+## 🌐 Live Website
+**The application is now live and deployed on Render.com!**
+
+🔗 **Live Website**: [https://four413-project-group-d-7.onrender.com/](https://four413-project-group-d-7.onrender.com/)
+
+The application is fully functional and accessible online. You can browse electric vehicles, create accounts, add items to cart, and experience all the features of the EV E-commerce platform.
+
+---
+
 ## Project Overview
 
 This is a comprehensive e-commerce platform for electric vehicles (EVs) built as part of the EECS4413 course project. The system allows customers to browse, compare, customize, and purchase electric vehicles, while administrators can monitor sales and analyze platform usage.
+
+**🚀 Status**: Successfully deployed and live on Render.com
 
 ## Technology Stack
 
@@ -136,6 +147,11 @@ The frontend will start on `http://localhost:3000`.
 
 ## First-Time Run Checklist
 
+### Option 1: Use the Live Website (Recommended)
+1. **Visit the live website**: [https://four413-project-group-d-7.onrender.com/](https://four413-project-group-d-7.onrender.com/)
+2. **Start exploring**: Browse EVs, create an account, and test all features immediately!
+
+### Option 2: Local Development Setup
 1. Clone the repository.
 2. Set up PostgreSQL and create the database/user.
 3. Update `application.properties` with your DB credentials.
